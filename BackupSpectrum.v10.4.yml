@@ -1,0 +1,34 @@
+---
+  ## Elaboración de Backup de la información de Spectrum v10.4 
+  ## Inicialmente se programa ejecutar el proceso en Red Hat 7.9 (pruebas satisfactorias)
+  ## Autor: Jorge Zavala Navarro
+
+- name: ELABORAR BACKUP DE SPECTRUM 10.4 EN LINUX RED HAT 7.9 ENTERPRISE CON SSdbsave 
+  hosts: LineaComando
+  gather_facts: yes
+
+
+  vars:
+          repo_tag: spectrum_10_4
+
+          vars:
+                  path_spectrum_root: /usr/Spectrum
+                  cmd_comando_respaldo: /SS-Tools/SSdbsave -cm
+                  timestamp: "{{lookup('pipe', 'date +%Y%m%d%H%M%SZ')}}"
+                  release_name: '{{ repo_tag }}_{{timestamp}}'
+                  archivo_backup: '{{release_name}}'
+                  ruta_carpeta_backups: /home/jzavala/respaldos/Spectrum
+  tasks:        
+
+          ## Validar la carpeta de los respaldos
+          - name: Validar la carpeta de los respaldos
+            file:
+                    path: '{{ ruta_carpeta_backups }}'
+                    state: directory
+                    mode: '0755'
+
+          ## Generar el respaldo. La extención .SSdb se agrega automàticamente
+          - name: Ejecutar el backup de Spectrum 10.4 respaldo completo: c: Catálogo, m:Modelo
+            command: '{{ path_spectrum_root }}{{ cmd_comando_respaldo  }} {{ ruta_carpeta_backups }}/{{ archivo_backup }}'
+
+
