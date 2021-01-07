@@ -20,7 +20,7 @@
                   ruta_carpeta_backups: /home/jzavala/respaldos/Spectrum
   tasks:        
 
-          ## Validar la carpeta de los respaldos
+            ## Validar la carpeta de los respaldos
           - name: Validar la carpeta de los respaldos
             file:
                     path: '{{ ruta_carpeta_backups }}'
