@@ -9,9 +9,9 @@
 
   vars:
           repo_tag: spectrum_10_4
+          path_spectrum_root: /usr/Spectrum
 
           vars:
-                  path_spectrum_root: /usr/Spectrum
                   cmd_comando_respaldo: /SS-Tools/SSdbsave -cm
                   timestamp: "{{lookup('pipe', 'date +%Y%m%d%H%M%SZ')}}"
                   release_name: '{{ repo_tag }}_{{timestamp}}'
