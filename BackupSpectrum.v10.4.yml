@@ -23,7 +23,12 @@
                     state: directory
                     mode: '0755'
 
+          - name: Detener el servicio para poder hacer el backup
+            command: '{{ path_spectrum_root }}/bin/stopSS.pl'
+
           - name: 'Ejecutar el backup de Spectrum 10.4 respaldo completo: c: Catálogo, m:Modelo'
             command: '{{ path_spectrum_root }}{{ cmd_comando_respaldo  }} {{ ruta_carpeta_backups }}/{{ archivo_backup }}'
 
+          - name: Levantamos el servicio 
+            command: '{{ path_spectrum_root }}/bin/startSS.pl'
 
