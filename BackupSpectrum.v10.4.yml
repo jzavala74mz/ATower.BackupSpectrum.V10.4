@@ -6,7 +6,6 @@
 - name: ELABORAR BACKUP DE SPECTRUM 10.4 EN LINUX RED HAT 7.9 ENTERPRISE CON SSdbsave 
   hosts: LineaComando
   gather_facts: yes
-  
 
   vars:
           repo_tag: spectrum_10_4
@@ -19,7 +18,7 @@
                   archivo_backup: '{{release_name}}'
                   ruta_carpeta_backups: /home/jzavala/respaldos/Spectrum
   tasks:
-          - name: Validar la carpeta de los respaldos
+          - name: 'Validar la carpeta de los respaldos {{ ruta_carpeta_backups }}'
             file:
                     path: '{{ ruta_carpeta_backups }}'
                     state: directory
