@@ -10,13 +10,14 @@
   vars:
           repo_tag: spectrum_10_4
           path_spectrum_root: /usr/Spectrum
+          cmd_comando_respaldo: /SS-Tools/SSdbsave -cm
+          ruta_carpeta_backups: /home/jzavala/respaldos/Spectrum
 
           vars:
-                  cmd_comando_respaldo: /SS-Tools/SSdbsave -cm
                   timestamp: "{{lookup('pipe', 'date +%Y%m%d%H%M%SZ')}}"
                   release_name: '{{ repo_tag }}_{{timestamp}}'
                   archivo_backup: '{{release_name}}'
-                  ruta_carpeta_backups: /home/jzavala/respaldos/Spectrum
+                  
   tasks:
           - name: 'Validar la carpeta de los respaldos {{ ruta_carpeta_backups }}'
             file:
